@@ -1,5 +1,6 @@
+#include "runtimePatcher/runtimePatcher.h"
+#include "papyrus/papyrus.h"
 #include "hooks/hooks.h"
-#include "Papyrus/papyrus.h"
 
 namespace
 {
@@ -24,7 +25,7 @@ namespace
 		log->flush_on(level);
 
 		spdlog::set_default_logger(std::move(log));
-		spdlog::set_pattern("%s(%#): [%^%l%$] %v"s);
+		spdlog::set_pattern("%v"s);
 	}
 }
 
@@ -64,6 +65,8 @@ static void MessageEventCallback(SKSE::MessagingInterface::Message* a_msg)
 {
 	switch (a_msg->type) {
 	case SKSE::MessagingInterface::kDataLoaded:
+		RuntimePatcher::Patch();
+		Hooks::Install();
 		break;
 	default:
 		break;
@@ -76,7 +79,6 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 	logger::info("{} v{}"sv, Plugin::NAME, Plugin::VERSION.string());
 
 	SKSE::Init(a_skse);
-	SKSE::AllocTrampoline(0);
 
 	const auto ver = a_skse->RuntimeVersion();
 	if (ver < SKSE::RUNTIME_1_6_1130) {
@@ -85,8 +87,6 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 
 	const auto messaging = SKSE::GetMessagingInterface();
 	messaging->RegisterListener(&MessageEventCallback);
-
-	Hooks::Install();
 	SKSE::GetPapyrusInterface()->Register(Papyrus::RegisterFunctions);
 	return true;
 }
