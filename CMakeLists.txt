@@ -41,6 +41,28 @@ set_target_properties(CommonLibSSE PROPERTIES
 	FOLDER External
 )
 
+set(DATA_DIR "${PROJECT_SOURCE_DIR}/data")
+
+install(
+	FILES "${DATA_DIR}/Source/Scripts/ABW_AnimateBoundWeapon.psc"
+	DESTINATION "."
+)
+
+install(
+	FILES "${DATA_DIR}/Source/Scripts/SEA_AnimateBoundWeapons.psc"
+	DESTINATION "."
+)
+
+install(
+	FILES "${DATA_DIR}/AnimateBoundWeapons.esp"
+	DESTINATION "."
+)
+
+install(
+	FILES "${DATA_DIR}/AnimateBoundWeapons.bsa"
+	DESTINATION "."
+)
+
 # ---- Post build ----
 if(DEFINED ENV{SKYRIM_MODS_FOLDER} AND IS_DIRECTORY "$ENV{SKYRIM_MODS_FOLDER}")
 	if(BUILD_TEST)
