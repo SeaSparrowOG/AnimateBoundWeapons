@@ -63,6 +63,8 @@ install(
 	DESTINATION "."
 )
 
+include(components.cmake)
+
 # ---- Post build ----
 if(DEFINED ENV{SKYRIM_MODS_FOLDER} AND IS_DIRECTORY "$ENV{SKYRIM_MODS_FOLDER}")
 	if(BUILD_TEST)
