@@ -54,12 +54,12 @@ install(
 )
 
 install(
-	FILES "${DATA_DIR}/AnimatedBoundWeapons.esp"
+	FILES "${DATA_DIR}/AnimateBoundWeapons.esp"
 	DESTINATION "."
 )
 
 install(
-	FILES "${DATA_DIR}/AnimatedBoundWeapons.bsa"
+	FILES "${DATA_DIR}/AnimateBoundWeapons.bsa"
 	DESTINATION "."
 )
 
