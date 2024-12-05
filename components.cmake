@@ -1,6 +1,6 @@
 install(
 	FILES
-		"${DATA_DIR}/AnimateBoundWeapons.esp"
+		"${DATA_DIR}/AnimatedBoundWeapons.esp"
 	DESTINATION "."
 	COMPONENT components
 	EXCLUDE_FROM_ALL
@@ -8,7 +8,7 @@ install(
 
 install(
 	FILES
-		"${DATA_DIR}/AnimateBoundWeapons.bsa"
+		"${DATA_DIR}/AnimatedBoundWeapons.bsa"
 	DESTINATION "."
 	COMPONENT components
 	EXCLUDE_FROM_ALL
