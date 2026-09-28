@@ -12,13 +12,13 @@ namespace Hooks
 		const auto dataHandler = RE::TESDataHandler::GetSingleton();
 		assert(dataHandler);
 		if (!dataHandler) {
-			logger::error("Failed to get data handler (hooks). This will lead to a crash later on, unrelated to this mod.");
+			REX::ERROR("Failed to get data handler (hooks). This will lead to a crash later on, unrelated to this mod.");
 			return;
 		}
 
 		const auto spectre = dataHandler->LookupForm<RE::TESNPC>(0x800, "AnimatedBoundWeapons.esp");
 		if (!spectre) {
-			logger::error("Failed to get the proper ghost form. Hooks will not be installed.");
+			REX::ERROR("Failed to get the proper ghost form. Hooks will not be installed.");
 			return;
 		}
 		unsheathingSpectre = spectre;

@@ -9,13 +9,13 @@ namespace RuntimePatcher
 		const auto dataHandler = RE::TESDataHandler::GetSingleton();
 		assert(dataHandler);
 		if (!dataHandler) {
-			logger::error("Failed to get Data Handler. This is likely going to cause a crash later on, not related to this mod.");
+			REX::ERROR("Failed to get Data Handler. This is likely going to cause a crash later on, not related to this mod.");
 			return;
 		}
 
 		const auto effectToAdd = dataHandler->LookupForm<RE::EffectSetting>(0x801, "AnimatedBoundWeapons.esp");
 		if (!effectToAdd) {
-			logger::error("Failed to find the dual cast effect!");
+			REX::ERROR("Failed to find the dual cast effect!");
 			return;
 		}
 
@@ -75,7 +75,7 @@ namespace RuntimePatcher
 
 				auto* newConditionItem = new RE::TESConditionItem();
 				if (!newConditionItem) {
-					logger::error("Failed to create new condition item for {}!", spell->GetName());
+					REX::ERROR("Failed to create new condition item for {}!", spell->GetName());
 					break;
 				}
 
